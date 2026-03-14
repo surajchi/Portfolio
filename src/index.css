@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+@tailwind utilities;
+
+/* TAILWIND 4 DARK MODE */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Light Mode */
+  --bg-primary: #f8f7f4;
+  --bg-secondary: #f0ede8;
+  --bg-card: rgba(255,255,255,0.85);
+  --bg-card-hover: rgba(255,255,255,0.95);
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+  --text-primary: #0d0d0d;
+  --text-secondary: #4a4a4a;
+  --text-muted: #888;
+  --accent: #e8621a;
+  --accent-2: #c44b0c;
+  --glow: rgba(232, 98, 26, 0.25);
+  --glow-blue: rgba(79, 70, 229, 0.2);
+  --nav-bg: rgba(248, 247, 244, 0.85);
+  --shadow: 0 8px 32px rgba(0,0,0,0.08);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.12);
+  --grain-opacity: 0.03;
+}
+
+.dark {
+  --bg-primary: #080808;
+  --bg-secondary: #0f0f0f;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --text-primary: #f2f0eb;
+  --text-secondary: #a8a29e;
+  --text-muted: #666;
+  --accent: #ff7c35;
+  --accent-2: #ffaa6d;
+  --glow: rgba(255, 124, 53, 0.3);
+  --glow-blue: rgba(99, 102, 241, 0.25);
+  --nav-bg: rgba(8, 8, 8, 0.88);
+  --shadow: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.6);
+  --grain-opacity: 0.04;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Sora', 'Inter', sans-serif;
+  transition: background 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   GRAIN TEXTURE OVERLAY
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+
+.font-display {
+  font-family: 'Sora', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-mono-custom {
+  font-family: 'Space Mono', monospace;
+}
+
+/* ============================================
+   GLASS CARD
+   ============================================ */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   ACCENT GLOW
+   ============================================ */
+.accent-glow {
+  box-shadow: 0 0 40px var(--glow), 0 0 80px var(--glow);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+.section-line {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 24px var(--glow);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 40px var(--glow), 0 0 60px var(--glow);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+/* ============================================
+   SKILL BADGE
+   ============================================ */
+.skill-badge {
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(232, 98, 26, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(232, 98, 26, 0.2);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--border-strong);
+  transition: box-shadow 0.3s ease;
+}
+
+.timeline-dot:hover {
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--accent), 0 0 20px var(--glow);
+}
+
+/* ============================================
+   NAV
+   ============================================ */
+.nav-link {
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   LOADING
+   ============================================ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; text-shadow: 0 0 20px var(--accent); }
+  50% { opacity: 1; text-shadow: 0 0 60px var(--accent), 0 0 100px var(--accent); }
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   BG MESH
+   ============================================ */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.dark .bg-mesh-orb {
+  opacity: 0.07;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  backdrop-filter: blur(10px);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 98, 26, 0.12);
+}
+
+/* ============================================
+   PROJECT CARD
+   ============================================ */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 21px;
+  background: linear-gradient(135deg, var(--accent), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.project-card:hover::before {
+  opacity: 0.3;
+}
+
+/* ============================================
+   CURSOR
+   ============================================ */
+.magnetic-target {
+  cursor: none;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ============================================
+   PERFORMANCE FIXES
+   ============================================ */
+
+/* Native smooth scroll — no JS library needed */
+html {
+  scroll-behavior: smooth;
+}
+
+/* GPU-composite the animated orbs so they don't repaint on scroll */
+.bg-mesh-orb {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Stop backdrop-filter from creating new stacking contexts on modal parents */
+/* Modals now use React portals so this is belt-and-suspenders */
+.glass-card {
+  isolation: isolate;
+}

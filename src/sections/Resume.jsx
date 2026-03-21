@@ -18,13 +18,17 @@ export default function Resume() {
           {/* Background decoration */}
           <div
             className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl"
-            style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-2))" }}
+            style={{
+              background:
+                "linear-gradient(90deg, var(--accent), var(--accent-2))",
+            }}
           />
 
           <div
             className="w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center"
             style={{
-              background: "linear-gradient(135deg, var(--accent), var(--accent-2))",
+              background:
+                "linear-gradient(135deg, var(--accent), var(--accent-2))",
               boxShadow: "0 8px 32px var(--glow)",
             }}
           >
@@ -42,11 +46,12 @@ export default function Resume() {
             className="text-sm leading-relaxed mb-8"
             style={{ color: "var(--text-muted)" }}
           >
-            Download my latest CV to explore my skills, projects & professional experience.
+            Download my latest CV to explore my skills, projects & professional
+            experience.
           </p>
 
           <motion.a
-            href="/resume.pdf"
+            href="../../public/resume.pdf"
             download
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}

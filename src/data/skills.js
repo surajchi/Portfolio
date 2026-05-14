@@ -24,6 +24,7 @@ export const skills = [
       { name: "Python", icon: python },
       { name: "Django", icon: django },
       { name: "Node.js", icon: node },
+      { name: "Express.js", icon: node },
     ],
   },
   {

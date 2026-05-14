@@ -7,6 +7,7 @@ import mongo from "../assets/mogo.svg";
 import html from "../assets/html.svg";
 import js from "../assets/js.svg";
 import tailwind from "../assets/tailwind.svg";
+import express from "../assets/espress.svg";
 
 export const skills = [
   {
@@ -24,7 +25,7 @@ export const skills = [
       { name: "Python", icon: python },
       { name: "Django", icon: django },
       { name: "Node.js", icon: node },
-      { name: "Express.js", icon: node },
+      { name: "Express.js", icon: express },
     ],
   },
   {

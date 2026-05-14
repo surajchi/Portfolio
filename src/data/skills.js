@@ -7,7 +7,7 @@ import mongo from "../assets/mogo.svg";
 import html from "../assets/html.svg";
 import js from "../assets/js.svg";
 import tailwind from "../assets/tailwind.svg";
-import express from "../assets/espress.svg";
+import express from "../assets/express.svg";
 
 export const skills = [
   {
